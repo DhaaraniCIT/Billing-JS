@@ -1,0 +1,11 @@
+body{
+    font-family: 'Poppins', sans-serif;
+}
+.bill-form{
+    margin-bottom: 100px;
+}
+.root{
+    background-color: gainsboro;
+    height: 100vh;
+    width: 100%;
+}

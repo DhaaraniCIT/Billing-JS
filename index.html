@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <title>SIT</title>
+</head>
+<body>
+    <div class="root">
+        <div class="bill-form" id="bill-form">
+            <div class="container">
+                <div class="text-center pt-5">
+                    <h3><b>Senthil Iron Traders</b></h3>
+                    <h5>Billing</h5>
+                </div>
+                <div class="mt-5">
+                    <form id="billform">
+                        <div class="row">
+                            <div class="col-md-4 d-md-block d-none  text-right">
+                                <p><b>Bill No.</b></p>
+                            </div>
+                            <div class="col-sm-4 d-md-none">
+                                <p><b>Bill No.</b></p>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="billno" placeholder="Bill no." name="billno">
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-4 d-md-block d-none  text-right">
+                                <p><b>Company Name</b></p>
+                            </div>
+                            <div class="col-sm-4 d-md-none">
+                                <p><b>Company Name</b></p>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="cname" placeholder="Enter Company" name="cname">
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-4 d-md-block d-none  text-right">
+                                <p><b>Date</b></p>
+                            </div>
+                            <div class="col-sm-4 d-md-none">
+                                <p><b>Date</b></p>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="date" class="form-control" id="bdate" name="bday" >
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4 d-md-block d-none text-right mt-3">
+                                <p><b>Materials</b></p>
+                            </div>
+                            <div class="col-sm-4 d-md-none mt-3">
+                                <p><b>Materials</b></p>
+                            </div>
+                            <div class="col-sm-7" id="matirial">
+                                <div class="row">
+                                    <div class="col-sm pr-md-0 mt-3">
+                                        <input type="text" class="form-control" id="mat0" placeholder="Material Name" name="matname">
+                                    </div>
+                                    <div class="col-sm pr-md-0 mt-3">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="matwt0" placeholder="mat wt" name="matwt" onchange="calculaterate(this)">
+                                            <div class="input-group-append">
+                                              <span class="input-group-text">Kg</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm pr-md-0 mt-3">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                              <span class="input-group-text">&#x20b9;</span>
+                                            </div>
+                                            <input type="text" class="form-control" id="matrate0" placeholder="mat rate" name="matrate" onclick="clickRate(this)" onchange="calculateAmount()">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm mt-3">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                              <span class="input-group-text">&#x20b9;</span>
+                                            </div>
+                                            <input type="text" class="form-control" id="matamt0" placeholder="amount" value="0" name="amount" onclick="peramount(this)" onchange="amouontCal(this)">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-1 text-right pl-0 align-self-end ">
+                                <div>
+                                    <button class="btn btn-primary" id="add" >Add</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-4 d-md-block d-none text-right">
+                                <p><b>Purchase/Sales</b></p>
+                            </div>
+                            <div class="col-sm-4 d-md-none">
+                                <p><b>Purchase/Sales</b></p>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                      <input type="radio" class="form-check-input" id="pur" value="Purchase" checked name="optradio">Purchase
+                                    </label>
+                                </div>
+                                <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                      <input type="radio" class="form-check-input" id="sale" value="Sales" name="optradio">Sales
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-4 d-md-block d-none text-right">
+                                <p><b>Advance Amount</b></p>
+                            </div>
+                            <div class="col-sm-4 d-md-none">
+                                <p><b>Advance Amount</b></p>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text">&#x20b9;</span>
+                                    </div>
+                                    <input type="text" class="form-control" id="advanceamt" value="0" name="Advanceamt" placeholder="Advance Amount" onchange="advanceCal()">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-4 d-md-block d-none text-right">
+                                <p><b>Total</b></p>
+                            </div>
+                            <div class="col-sm-4 d-md-none">
+                                <p><b>Total</b></p>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text">&#x20b9;</span>
+                                    </div>
+                                    <input type="text" class="form-control" id="total" value="0" name="total" placeholder="Total amount">
+                                </div>
+                            </div>
+                        </div>
+                        <div id="alert">
+                            <div class="text-info text-center">Please fill out fields.</div>
+                        </div>
+                        <div class="mt-3">
+                            <div class="float-right">
+                                <button id="sumbitbtn" class="btn btn-primary" >Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script  src="https://code.jquery.com/jquery-3.4.1.min.js"  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="  crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js" integrity="sha256-sPB0F50YUDK0otDnsfNHawYmA5M0pjjUf4TvRJkGFrI=" crossorigin="anonymous"></script>
+    <script>
+        var count=0
+        var pre
+        var ftotal=0
+        var preRa=0
+        function calculateAmount(){
+            var wt = $('#matwt'+count).val()
+            var rate = $('#matrate'+count).val()
+            var amount = wt*rate
+            $('#matamt'+count).val(amount)
+            if($('#total').val() == 0 || preRa==0){
+                ftotal = Number($('#total').val())+amount
+                $('#total').val(ftotal)
+            }
+            else{
+                var totla = Number($('#total').val())+amount-Number(preRa)
+                $('#total').val(totla)
+                preRa = Number(preRa)
+                preRa = 0
+            }
+            document.getElementById("add").disabled=false
+        }
+        function calculaterate(th){
+            var id = th.id[th.id.length-1]
+            console.log(id)
+            if(th.value !=null){
+                document.getElementById('matrate'+id).disabled=false
+                document.getElementById('matamt'+id).disabled=false
+            }
+            else{
+                document.getElementById('matrate'+id).disabled=true
+                document.getElementById('matamt'+id).disabled=true
+            }
+            var pri = $('#matamt'+id).val()
+            if(pri>0){
+                var wt = $('#matwt'+id).val()
+                var rate = $('#matrate'+id).val()
+                var amount = wt*rate
+                $('#matamt'+id).val(amount)
+                if($('#total').val() == 0 || pri == 0){
+                    ftotal = Number($('#total').val())+amount
+                    $('#total').val(ftotal)
+                }
+                else{
+                    var totla = Number($('#total').val())+amount-Number(pri)
+                    $('#total').val(totla)
+                }
+            }
+        }
+        function clickRate(th){
+            preRa = $('#matamt'+th.id[th.id.length-1]).val()
+        }
+        function amouontCal(el){
+            var pre = $('#'+el.id).val()
+            var diff=0
+            var to = Number($('#total').val())
+            console.log(typeof to)
+            if(pre < per)
+            {
+                diff = per-pre
+                $('#total').val(to-diff)
+            }
+            else{
+                diff = pre-per
+                $('#total').val(to+diff)
+            }
+
+        }
+        function advanceCal(){
+            var ad = $('#advanceamt').val()
+            var total = $('#total').val()
+            $('#total').val(total-ad)
+        }
+        function peramount(th){
+            per = $('#'+th.id).val()
+            console.log(per)
+        }
+        function removeRow(el){
+            var iid = 'matrow'+el.id
+            var amtid = '#matamt'+el.id
+            var amt = $(amtid).val()
+            var tol = $('#total').val()-amt
+            $('#total').val(tol)
+            document.getElementById(iid).remove()
+            count=count-1
+        }
+        $(document).ready(function(){
+            document.getElementById("add").disabled=true
+            document.getElementById('matrate'+count).disabled=true
+            document.getElementById('matamt'+count).disabled=true
+            $('#alert').hide()
+            var Dodiabled = true
+            const d = new Date();
+            let date = d.getDate();
+            let mon = d.getMonth()
+            mon=mon+1
+            if(mon<10){
+                mon='0'+mon
+            }
+            let year = d.getFullYear();
+            $('#bdate').val(year+'-'+mon+'-'+date)
+           
+            $('#add').click(function(e){
+                e.preventDefault()
+                count = count+1
+                $('#matirial').append(`<div class="row mt-2 " id="`+getmatroeid()+`">
+                                    <div class="col-sm pr-0">
+                                        <input type="text" class="form-control" id="`+getmatid()+`" placeholder="Material Name" name="matname">
+                                    </div>
+                                    <div class="col-sm pr-0">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="`+getmatwtid()+`" placeholder="mat wt" name="matwt" onchange="calculaterate(this)">
+                                            <div class="input-group-append">
+                                              <span class="input-group-text">Kg</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm pr-0">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                              <span class="input-group-text">&#x20b9;</span>
+                                            </div>
+                                            <input type="text" class="form-control" id="`+getmatrateid()+`" placeholder="mat rate" onclick="clickRate(this)" onchange="calculateAmount()" name="matrate">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm d-flex">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                              <span class="input-group-text">&#x20b9;</span>
+                                            </div>
+                                            <input type="text" class="form-control" id="`+getmatamtid()+`" placeholder="amount" value="0" name="amount" onclick="peramount(this)" onchange="amouontCal(this)">
+                                        </div>
+                                        <button type="button" class="close" id="`+getmatremoveid()+`" onclick="removeRow(this)">&times;</button>
+                                    </div>
+                                </div>`)
+                                document.getElementById('matrate'+count).disabled=true
+                                document.getElementById('matamt'+count).disabled=true
+                                document.getElementById("add").disabled=true
+            })
+            $('#sumbitbtn').click(function(e){ 
+                
+                e.preventDefault()
+                if($('#billno').val()!=='' && $('#cname').val()!==''){
+                    // fetch(fetch('https://script.google.com/macros/s/AKfycbzjFuybkiPyvs4keDZ62TS0FgowaQ_iGK2zqTg8REw-pInGgydXzUWQvg-FTXfTqZLhbQ/exec',{
+                    //             method:'get',
+                    //             mode: 'no-cors'
+                    //         }
+                    //         ).then(response=>console.log(response))
+
+                    // )
+                    for(var i=0;i<=count;i++){
+                        const data = new FormData()
+                        if($('#mat'+i).val()!=='' && $('#matrate'+i).val()!=='' && $('#matamt'+i).val()!=='' && $('#matwt'+i).val()!==''){
+                            $('#alert').hide()
+                            data.append('BillNo',$('#billno').val())
+                            data.append('Data',$('#bdate').val())
+                            data.append('CompName',$('#cname').val())
+                            data.append('Matirialname',$('#mat'+i).val())
+                            data.append('MatirialWeight',$('#matwt'+i).val())
+                            data.append('MatirialRate',$('#matrate'+i).val())
+                            data.append('Amount',$('#matamt'+i).val())
+                            if(i==count){
+                                data.append('Advanced',$('#advanceamt').val())
+                                data.append('Total',$('#total').val())
+                            }
+                            if(document.getElementById('pur').checked) {
+                                data.append('Purchase/Sales',$('#pur').val())
+                            }
+                            else{
+                                data.append('Purchase/Sales',$('#sale').val())
+                            }
+                            fetch('https://script.google.com/macros/s/AKfycbzjFuybkiPyvs4keDZ62TS0FgowaQ_iGK2zqTg8REw-pInGgydXzUWQvg-FTXfTqZLhbQ/exec',{
+                                method:'post',
+                                body:data,
+                                mode: 'no-cors'
+                            }
+                            ).then(response=>alert('Form data saved Successfully'))
+                            .then(response=>location.reload())
+                            // ).then(response=>console.log(response))
+                            // https://script.google.com/macros/s/AKfycbzjFuybkiPyvs4keDZ62TS0FgowaQ_iGK2zqTg8REw-pInGgydXzUWQvg-FTXfTqZLhbQ/exec
+                        }
+                        else{
+                            $('#alert').show()
+                        }
+                    }
+                }
+                else{
+                    console.log('qq')
+                    $('#alert').show()
+                }
+            })
+            function getmatid(){
+                console.log('mat'+count)
+                return 'mat'+count
+            }
+            function getmatremoveid(){
+                return count
+            }
+            function getmatwtid(){
+                return 'matwt'+count
+            }
+            function getmatrateid(){
+                return 'matrate'+count
+            }
+            function getmatamtid(){
+                return 'matamt'+count
+            }
+            function getmatroeid(){
+                return 'matrow'+count
+            }
+            
+        })
+    </script>
+</body>
+</html>
